@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #05070e;
+  --foreground: #e7ecf5;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.45);
+  color: #ffffff;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #070b14;
+}
+::-webkit-scrollbar-thumb {
+  background: #1d2942;
+  border-radius: 8px;
+  border: 2px solid #070b14;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2c3d66;
+}
+
+@layer components {
+  /* Page container with responsive padding */
+  .container-px {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Glassmorphism surfaces */
+  .glass {
+    @apply border border-white/10 bg-white/[0.04] backdrop-blur-xl;
+  }
+  .glass-strong {
+    @apply border border-white/10 bg-white/[0.06] backdrop-blur-2xl;
+  }
+
+  /* Gradient text (blue → violet → fuchsia) */
+  .text-gradient {
+    @apply bg-gradient-to-r from-electric via-violet to-fuchsia bg-clip-text text-transparent;
+  }
+  .text-gradient-soft {
+    @apply bg-gradient-to-r from-electric-bright via-violet-bright to-fuchsia bg-clip-text text-transparent;
+  }
+
+  /* Standard section block with vertical rhythm */
+  .section {
+    @apply relative py-20 sm:py-24 lg:py-32;
+  }
+
+  /* Small uppercase section label */
+  .eyebrow {
+    @apply mb-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-electric-bright;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-8 bg-gradient-to-r from-electric to-violet;
+  }
+
+  /* Gradient border wrapper (animated on hover) */
+  .gradient-border {
+    position: relative;
+  }
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(79, 124, 255, 0.65), rgba(139, 92, 246, 0.65), rgba(192, 91, 255, 0.65));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  .gradient-border:hover::before {
+    opacity: 1;
+  }
+
+  /* Subtle dotted grid used in hero / backgrounds */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
