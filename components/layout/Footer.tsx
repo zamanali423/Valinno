@@ -5,15 +5,6 @@ import Logo from "./Logo";
 import { siteConfig } from "@/lib/site";
 import { services } from "@/lib/data";
 
-// Define a type interface for the service objects
-interface ServiceItem {
-  slug: string;
-  title: string;
-  short: string;
-  description: string;
-  includes: string[];
-}
-
 const socials = [
   { label: "LinkedIn", href: siteConfig.socials.linkedin, icon: LinkedInIcon },
   { label: "Instagram", href: siteConfig.socials.instagram, icon: InstagramIcon },
