@@ -80,7 +80,7 @@ export default function Footer() {
             </h3>
             <ul className="mt-5 space-y-3">
               {/* Type annotations applied explicitly to parameter item */}
-              {services[6]?.map((service: ServiceItem) => (
+              {services.map((service) => (
                 <li key={service.slug}>
                   <Link
                     href={`/services/${service.slug}`}
