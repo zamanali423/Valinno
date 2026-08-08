@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import TestimonialCard from "@/components/ui/TestimonialCard";
-import { testimonials } from "@/lib/data";
+import { testimonials } from "@/lib/testimonials-data";
 import { cn } from "@/lib/utils";
 
 const AUTOPLAY_MS = 7000;
@@ -44,7 +44,7 @@ export default function Testimonials() {
               What Clients <span className="text-gradient">Say About Us</span>
             </>
           }
-          subtitle="Real quotes are coming soon these cards are clearly-marked placeholders you can swap with verified client testimonials."
+          subtitle="Real client quotes are on the way  until then, these clearly-marked placeholders are ready to be swapped with verified testimonials."
         />
 
         <div className="relative mx-auto mt-14 max-w-3xl lg:mt-16">

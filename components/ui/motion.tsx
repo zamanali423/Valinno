@@ -17,7 +17,7 @@ interface RevealProps {
   amount?: number;
 }
 
-/** Scroll-triggered reveal wrapper — fades + slides content in when it enters the viewport. */
+/** Scroll-triggered reveal wrapper  fades + slides content in when it enters the viewport. */
 export function Reveal({
   children,
   className,
@@ -45,11 +45,18 @@ export function Reveal({
 interface StaggerProps {
   children: ReactNode;
   className?: string;
-  amount?: number;
+  amount?: number | "some" | "all";
 }
 
-/** Parent that staggers its StaggerItem children on scroll into view. */
-export function StaggerGroup({ children, className, amount = 0.2 }: StaggerProps) {
+/**
+ * Parent that staggers its StaggerItem children on scroll into view.
+ *
+ * Uses `amount: "some"` by default: triggering on any visible pixel rather than a
+ * fixed ratio of the container. Grids like the 13-card services list are a single
+ * tall column on mobile  20% of the container can never fit in the viewport, which
+ * left the cards permanently invisible on small screens.
+ */
+export function StaggerGroup({ children, className, amount = "some" }: StaggerProps) {
   return (
     <motion.div
       className={cn(className)}

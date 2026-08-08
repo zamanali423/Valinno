@@ -10,12 +10,12 @@ import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Velinno — Full-Stack Software Solutions for Ambitious Businesses",
+    absolute: "Velinno  AI-Powered Software Solutions for Ambitious Businesses",
   },
   description:
-    "Velinno is a UAE-based full-stack software development agency delivering web, mobile, cloud and design solutions for startups, SMEs and enterprises.",
+    "Velinno is a UAE-based AI-first software development agency building AI-powered applications, intelligent automation and full-stack web, mobile, cloud and design solutions for startups, SMEs and enterprises.",
   openGraph: {
-    title: "Velinno Full-Stack Software Solutions for Ambitious Businesses",
+    title: "Velinno  AI-Powered Software Solutions for Ambitious Businesses",
     description: siteConfig.description,
   },
 };

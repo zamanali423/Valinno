@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ShieldCheck, Star, Sparkles } from "lucide-react";
+import { ShieldCheck, Star, Sparkles, Bot } from "lucide-react";
 import Button from "@/components/ui/Button";
 import CodeWindow from "./CodeWindow";
 import { siteConfig } from "@/lib/site";
 import { EASE } from "@/lib/animations";
 
-const headline = ["Full-Stack", "Software Solutions"];
+const headline = ["AI-Powered", "Software Solutions"];
 
 export default function Hero() {
   return (
@@ -31,9 +31,10 @@ export default function Hero() {
         />
       </div>
 
-      <div className="container-px grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
-        {/* Copy */}
-        <div className="text-center lg:text-left">
+      <div className="container-px grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+        {/* Copy  min-w-0 lets the single-column grid track shrink below the
+            illustration's max-w-md so mobile text never clips */}
+        <div className="min-w-0 text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
@@ -46,7 +47,7 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          <h1 className="mt-6 font-display text-[2.6rem] font-semibold leading-[1.06] tracking-tight text-white sm:text-6xl lg:text-[4.2rem]">
+          <h1 className="mt-6 font-display text-[2.15rem] font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl sm:leading-[1.06] lg:text-[4.2rem] lg:leading-[1.04]">
             {headline.map((line, i) => (
               <motion.span
                 key={line}
@@ -74,25 +75,43 @@ export default function Hero() {
             </motion.span>
           </h1>
 
+          {/* AI capabilities pill */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5, ease: EASE }}
+            className="mt-6 flex justify-center lg:justify-start"
+          >
+            <span className="flex max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-0.5 rounded-full border border-electric/25 bg-electric/[0.07] px-4 py-1.5 text-center backdrop-blur">
+              <Bot className="h-3.5 w-3.5 shrink-0 text-electric-bright" aria-hidden="true" />
+              <span className="text-[11px] font-medium text-ink-muted sm:text-xs">
+                AI Automation <span className="text-ink-faint">•</span> AI Powered Applications{" "}
+                <span className="text-ink-faint">•</span> Agentic AI
+              </span>
+            </span>
+          </motion.div>
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.55, ease: EASE }}
+            transition={{ duration: 0.6, delay: 0.62, ease: EASE }}
             className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg lg:mx-0"
           >
-            Velinno empowers startups and enterprises with next-generation web, mobile, and cloud solutions. We deliver cutting-edge digital products, robust platforms, and expert consulting to help your business grow, scale, and lead in the digital era.
+            Velinno empowers startups and enterprises with AI-powered applications, intelligent
+            automation, and next-generation web, mobile, and cloud solutions. We build smart
+            digital products that think, adapt, and scale with your business.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.68, ease: EASE }}
-            className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start"
+            className="mt-9 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center sm:justify-center lg:justify-start"
           >
-            <Button href="/contact" withArrow>
+            <Button href="/contact" withArrow fullWidth>
               Get Started
             </Button>
-            <Button href="/portfolio" variant="secondary">
+            <Button href="/portfolio" variant="secondary" fullWidth>
               View Our Work
             </Button>
           </motion.div>
@@ -119,9 +138,11 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Illustration */}
-        <div className="hidden justify-center lg:flex">
-          <CodeWindow />
+        {/* Illustration  min-w-0 so the 448px max-w-md can't stretch the grid */}
+        <div className="flex min-w-0 justify-center">
+          <div className="w-full max-w-md lg:w-auto lg:max-w-none">
+            <CodeWindow />
+          </div>
         </div>
       </div>
     </section>

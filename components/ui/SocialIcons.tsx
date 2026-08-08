@@ -2,7 +2,7 @@ interface IconProps {
   className?: string;
 }
 
-/** Brand SVGs — lucide-react no longer ships brand/social logos. */
+/** Brand SVGs  lucide-react no longer ships brand/social logos. */
 
 export function LinkedInIcon({ className }: IconProps) {
   return (

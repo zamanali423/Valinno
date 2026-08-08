@@ -2,14 +2,16 @@ import Link from "next/link";
 import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 import { LinkedInIcon, InstagramIcon, WhatsAppIcon } from "@/components/ui/SocialIcons";
 import Logo from "./Logo";
+import FooterServices from "./FooterServices";
 import { siteConfig } from "@/lib/site";
-import { services } from "@/lib/data";
 
 const socials = [
   { label: "LinkedIn", href: siteConfig.socials.linkedin, icon: LinkedInIcon },
   { label: "Instagram", href: siteConfig.socials.instagram, icon: InstagramIcon },
   { label: "WhatsApp", href: siteConfig.socials.whatsapp, icon: WhatsAppIcon },
 ];
+
+
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -25,8 +27,8 @@ export default function Footer() {
               {siteConfig.tagline}. {siteConfig.subTagline}.
             </p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-faint">
-              A UAE-based full-stack software development agency helping startups, SMEs and enterprises
-              ship web, mobile, cloud and design products.
+              Velinno builds AI-powered applications, intelligent automation and full-stack digital
+              solutions for ambitious businesses worldwide.
             </p>
             <div className="mt-6 flex items-center gap-3">
               {socials.map(({ label, href, icon: Icon }) => (
@@ -64,25 +66,8 @@ export default function Footer() {
             </ul>
           </nav>
 
-          {/* Services */}
-          <nav aria-label="Footer services">
-            <h3 className="font-display text-sm font-semibold uppercase tracking-widest text-white">
-              Services
-            </h3>
-            <ul className="mt-5 space-y-3">
-              {/* Type annotations applied explicitly to parameter item */}
-              {services.map((service) => (
-                <li key={service.slug}>
-                  <Link
-                    href={`/services/${service.slug}`}
-                    className="text-sm text-ink-muted transition-colors hover:text-white"
-                  >
-                    {service.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          {/* Services  responsive accordion linking to detail pages */}
+          <FooterServices />
 
           {/* Contact */}
           <div>

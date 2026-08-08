@@ -3,7 +3,7 @@ import { Reveal } from "@/components/ui/motion";
 import { stats } from "@/lib/data";
 
 /**
- * Animated statistics band. Values live in lib/data.ts — replace them
+ * Animated statistics band. Values live in lib/data.ts  replace them
  * with verified company numbers before launch.
  */
 export default function StatsSection() {

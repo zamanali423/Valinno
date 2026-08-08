@@ -1,20 +1,21 @@
 /**
- * Velinno — shared premium email templates (server-only).
+ * Velinno  shared premium email templates (server-only).
  *
- * Used by BOTH the contact Server Action (app/actions/sendContactEmail.ts) and
- * the API route handler (app/api/contact/route.ts) so the delivery markup
- * never drifts between the two delivery paths.
- *
- * Layout is table-based with all styling inline for maximum email-client
- * compatibility (Outlook, Gmail, Apple Mail), and every user-supplied value is
- * HTML-escaped before it enters the markup (injection-safe).
+ * Used by the API route handler (app/api/contact/route.ts) so the delivery
+ * markup never drifts. Layout is table-based with all styling inline for
+ * maximum email-client compatibility (Outlook, Gmail, Apple Mail), and every
+ * user-supplied value is HTML-escaped before it enters the markup
+ * (injection-safe).
  */
 
 export interface EmailContent {
   name: string;
   email: string;
   phone: string | null;
-  projectType: string | null;
+  companyName: string | null;
+  projectType: string;
+  budgetRange: string | null;
+  timeline: string | null;
   subject: string;
   message: string;
 }
@@ -47,7 +48,7 @@ function toSafeHtml(value: string): string {
 }
 
 export function buildContactEmailHtml(content: EmailContent): string {
-  const { name, email, phone, projectType, subject, message } = content;
+  const { name, email, phone, companyName, projectType, budgetRange, timeline, subject, message } = content;
 
   /** Two-row table: uppercase label + value card. */
   const field = (label: string, value: string) => `
@@ -66,7 +67,7 @@ export function buildContactEmailHtml(content: EmailContent): string {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>New inquiry — ${escapeHtml(name)}</title>
+    <title>New inquiry  ${escapeHtml(name)}</title>
   </head>
   <body style="margin:0;padding:0;background-color:${EMAIL_PALETTE.bg};">
     <!-- Full-width dark canvas -->
@@ -106,7 +107,10 @@ export function buildContactEmailHtml(content: EmailContent): string {
                 ${field("Name", escapeHtml(name))}
                 ${field("Email", `<a href="mailto:${escapeHtml(email)}" style="color:${EMAIL_PALETTE.accent};text-decoration:none;">${escapeHtml(email)}</a>`)}
                 ${phone ? field("Phone", escapeHtml(phone)) : ""}
-                ${projectType ? field("Project Type", escapeHtml(projectType)) : ""}
+                ${companyName ? field("Company", escapeHtml(companyName)) : ""}
+                ${field("Project Type", escapeHtml(projectType))}
+                ${budgetRange ? field("Budget Range", escapeHtml(budgetRange)) : ""}
+                ${timeline ? field("Timeline", escapeHtml(timeline)) : ""}
                 ${field("Message", toSafeHtml(message))}
               </td>
             </tr>
@@ -130,7 +134,7 @@ export function buildContactEmailHtml(content: EmailContent): string {
 }
 
 export function buildContactEmailText(content: EmailContent): string {
-  const { name, email, phone, projectType, subject, message } = content;
+  const { name, email, phone, companyName, projectType, budgetRange, timeline, subject, message } = content;
 
   return [
     "NEW CONTACT FORM SUBMISSION",
@@ -138,7 +142,10 @@ export function buildContactEmailText(content: EmailContent): string {
     `Name: ${name}`,
     `Email: ${email}`,
     phone ? `Phone: ${phone}` : "",
-    projectType ? `Project type: ${projectType}` : "",
+    companyName ? `Company: ${companyName}` : "",
+    `Project type: ${projectType}`,
+    budgetRange ? `Budget range: ${budgetRange}` : "",
+    timeline ? `Timeline: ${timeline}` : "",
     `Subject: ${subject}`,
     "",
     "Message:",
@@ -149,4 +156,87 @@ export function buildContactEmailText(content: EmailContent): string {
   ]
     .filter((line) => line !== "")
     .join("\n");
+}
+
+/* ------------------------------------------------------------------ */
+/* Auto-reply confirmation sent to the submitter                      */
+/* ------------------------------------------------------------------ */
+
+export interface AutoReplyContent {
+  name: string;
+  projectType: string;
+}
+
+export function buildAutoReplyHtml(content: AutoReplyContent): string {
+  const { name, projectType } = content;
+
+  return `<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Thanks for reaching out to Velinno</title>
+  </head>
+  <body style="margin:0;padding:0;background-color:${EMAIL_PALETTE.bg};">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:${EMAIL_PALETTE.bg};">
+      <tr>
+        <td align="center" style="padding:36px 16px;">
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background-color:${EMAIL_PALETTE.card};border:1px solid ${EMAIL_PALETTE.border};border-radius:16px;">
+            <tr>
+              <td style="padding:26px 30px;border-bottom:1px solid ${EMAIL_PALETTE.border};">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <tr>
+                    <td style="font-size:19px;font-weight:700;letter-spacing:0.5px;color:#ffffff;">VELINNO</td>
+                    <td align="right" style="font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:${EMAIL_PALETTE.accent};">We received your message</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="font-size:12px;color:${EMAIL_PALETTE.muted};padding-top:4px;">AI-Powered Software Solutions</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="height:3px;font-size:0;line-height:0;background:linear-gradient(90deg,${EMAIL_PALETTE.accent},#8b5cf6,#c05bff);">&nbsp;</td>
+            </tr>
+            <tr>
+              <td style="padding:30px;">
+                <div style="font-size:20px;line-height:1.4;font-weight:600;color:${EMAIL_PALETTE.text};margin-bottom:12px;">Hi ${escapeHtml(name)}, thanks for reaching out!</div>
+                <div style="font-size:14px;line-height:1.7;color:${EMAIL_PALETTE.muted};">
+                  We&apos;ve received your message about <strong style="color:${EMAIL_PALETTE.text};">${escapeHtml(projectType)}</strong> and will get back to you within 24 hours.
+                </div>
+                <div style="font-size:14px;line-height:1.7;color:${EMAIL_PALETTE.muted};margin-top:16px;">
+                  If your inquiry is urgent, call us at <a href="tel:+971553693942" style="color:${EMAIL_PALETTE.accent};text-decoration:none;">+971-55-3693942</a>.
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:20px 30px;border-top:1px solid ${EMAIL_PALETTE.border};">
+                <div style="font-size:12px;line-height:1.8;color:${EMAIL_PALETTE.dim};">
+                  Velinno Software Solutions  Dubai, United Arab Emirates<br />
+                  hello@velinno.com  velinno.com
+                </div>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>`;
+}
+
+export function buildAutoReplyText(content: AutoReplyContent): string {
+  const { name, projectType } = content;
+
+  return [
+    `Hi ${name}, thanks for reaching out to Velinno!`,
+    "",
+    `We've received your message about ${projectType} and will get back to you within 24 hours.`,
+    "",
+    "If your inquiry is urgent, call us at +971-55-3693942.",
+    "",
+    "Velinno Software Solutions  Dubai, United Arab Emirates",
+    "hello@velinno.com  velinno.com",
+  ].join("\n");
 }

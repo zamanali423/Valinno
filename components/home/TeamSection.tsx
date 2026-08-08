@@ -5,7 +5,7 @@ import TeamCard from "@/components/ui/TeamCard";
 import { StaggerGroup } from "@/components/ui/motion";
 import { team } from "@/lib/data";
 
-/** "Meet Our Team" — used on the Home page and reused on the About page. */
+/** "Meet Our Team"  used on the Home page and reused on the About page. */
 export default function TeamSection({ showLink = true }: { showLink?: boolean }) {
   return (
     <section id="team" className="section scroll-mt-24 bg-surface/30">

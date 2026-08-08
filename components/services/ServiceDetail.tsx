@@ -1,4 +1,5 @@
-import { Check } from "lucide-react";
+import Link from "next/link";
+import { Check, ArrowRight } from "lucide-react";
 import type { Service } from "@/types";
 import { getServiceIcon } from "@/lib/service-icons";
 import { Reveal } from "@/components/ui/motion";
@@ -72,6 +73,19 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                   </li>
                 ))}
               </ul>
+            </Reveal>
+
+            <Reveal y={20} delay={0.24}>
+              <Link
+                href={`/services/${service.slug}`}
+                className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-electric-bright transition-colors hover:text-white"
+              >
+                View full details
+                <ArrowRight
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                  aria-hidden="true"
+                />
+              </Link>
             </Reveal>
           </div>
         </div>

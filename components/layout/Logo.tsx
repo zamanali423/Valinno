@@ -11,7 +11,7 @@ export default function Logo({ className }: LogoProps) {
   return (
     <Link
       href="/"
-      aria-label="Velinno — home"
+      aria-label="Velinno  home"
       className={cn("group flex items-center shrink-0", className)}
     >
       <div className="relative w-28 h-9 sm:w-32 sm:h-10 md:w-36 md:h-11 lg:w-40 lg:h-12 block isolate">

@@ -1,9 +1,9 @@
 /**
- * Velinno — type-safe Nodemailer transport factory (server-only).
+ * Velinno  type-safe Nodemailer transport factory (server-only).
  *
  * Reads SMTP credentials exclusively from server-side environment variables
  * and instantiates the nodemailer transport lazily, so the app never crashes
- * at boot when variables are missing — the error only surfaces when an email
+ * at boot when variables are missing  the error only surfaces when an email
  * is actually attempted (and is caught by the caller).
  *
  * ⚠️ This module touches `process.env` and `nodemailer` (Node APIs). Never
@@ -51,7 +51,7 @@ export function getSmtpCredentials(): SmtpCredentials {
 
   if (!Number.isInteger(port) || port < 1 || port > 65535) {
     throw new Error(
-      `[mailer] Invalid SMTP_PORT "${portRaw}" — expected an integer between 1 and 65535.`,
+      `[mailer] Invalid SMTP_PORT "${portRaw}"  expected an integer between 1 and 65535.`,
     );
   }
 
@@ -80,10 +80,22 @@ export function getMailer(): Transporter {
 
   const { host, port, user, pass } = getSmtpCredentials();
 
+  // Gmail: port 465 = implicit TLS (secure: true), port 587 = STARTTLS.
+  // SMTP_SECURE optionally overrides the port-based default. Only the exact
+  // strings "true"/"false" (case-insensitive) are honored  anything else
+  // falls back to `port === 465` so a typo never silently disables TLS.
+  const secureOverride = process.env.SMTP_SECURE?.toLowerCase();
+  const secure =
+    secureOverride === "true"
+      ? true
+      : secureOverride === "false"
+        ? false
+        : port === 465;
+
   cachedTransport = nodemailer.createTransport({
     host,
     port,
-    secure: port === 465,
+    secure,
     auth: { user, pass },
     connectionTimeout: 10_000,
     greetingTimeout: 10_000,

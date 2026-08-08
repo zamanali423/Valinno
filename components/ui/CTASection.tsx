@@ -29,8 +29,9 @@ export default function CTASection() {
               Would You Like to Start a Project <span className="text-gradient">With Us?</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg">
-              Tell us about your idea we&apos;ll get back to you within one business day with a clear
-              plan and a no-obligation quote.
+              Tell us about your idea  an AI-powered application, an automation workflow or a
+              complete product build  and we&apos;ll get back to you within one business day with a
+              clear plan and a no-obligation quote.
             </p>
 
             <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">

@@ -1,5 +1,5 @@
 /**
- * Fixed, non-interactive ambient background — gradient aurora blobs + faint grid.
+ * Fixed, non-interactive ambient background  gradient aurora blobs + faint grid.
  * Rendered once in the root layout, behind everything.
  */
 export default function BackgroundFX() {

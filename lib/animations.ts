@@ -10,7 +10,7 @@ export const fadeUp: Variants = {
   },
 };
 
-/** Scale in — used for cards and imagery. */
+/** Scale in  used for cards and imagery. */
 export const scaleIn: Variants = {
   hidden: { opacity: 0, scale: 0.92 },
   visible: {

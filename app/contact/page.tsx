@@ -6,7 +6,7 @@ import ContactInfo from "@/components/contact/ContactInfo";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Get a free quote from Velinno. Call +971-55-3693942 or send us a message we reply within one business day.",
+    "Get a free quote from Velinno  AI-powered applications, intelligent automation, web, mobile and cloud. Call +971-55-3693942 or send us a message; we reply within one business day.",
 };
 
 export default function ContactPage() {
@@ -19,7 +19,7 @@ export default function ContactPage() {
             Let&apos;s Build Something <span className="text-gradient">Great Together</span>
           </>
         }
-        description="Tell us about your project and we'll come back with a clear plan and a no-obligation quote usually within one business day."
+        description="Tell us about your project  from AI-powered applications and intelligent automation to web, mobile and cloud platforms  and we'll come back with a clear plan and a no-obligation quote usually within one business day."
       />
 
       <section className="section pt-4 sm:pt-6">

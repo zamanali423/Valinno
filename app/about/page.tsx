@@ -12,7 +12,7 @@ import { Target, Rocket } from "lucide-react";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Velinno is a UAE-based full-stack software development agency delivering web, mobile, cloud and design solutions for startups and enterprises.",
+    "Velinno is a UAE-based AI-first software development agency building AI-powered applications, intelligent automation, chatbots and agentic systems alongside web, mobile and cloud solutions for startups and enterprises.",
 };
 
 export default function AboutPage() {
@@ -25,7 +25,7 @@ export default function AboutPage() {
             Innovating the <span className="text-gradient">Future of Technology</span>
           </>
         }
-        description="A UAE-based full-stack software agency that helps startups, SMEs and enterprises turn ambitious ideas into dependable digital products."
+        description="A UAE-based AI-first software agency that helps startups, SMEs and enterprises turn ambitious ideas into dependable digital products  powered by intelligent automation where it matters most."
       />
 
       {/* Who we are / Mission */}
@@ -43,6 +43,12 @@ export default function AboutPage() {
                   We design, build and operate digital products for businesses that take growth
                   seriously from early-stage startups shipping their first MVP to established
                   enterprises modernising legacy systems.
+                </p>
+                <p>
+                  AI is a core part of how we build, not an add-on. Alongside full-stack
+                  engineering, our team designs AI workflows, chatbots, agentic systems and
+                  intelligent automation  then grounds them in the reliable web, mobile and
+                  cloud platforms your business runs on every day.
                 </p>
                 <p>
                   Our team spans engineering, design and strategy. That means one accountable
@@ -63,10 +69,11 @@ export default function AboutPage() {
                   Our Mission
                 </h3>
                 <p className="mt-3 text-base leading-relaxed text-ink-muted">
-                  To give ambitious businesses the engineering muscle of a large technology
-                  partner with the speed, care and transparency of a senior in-house team
-                  and to ship software that genuinely moves the needle, not just code that
-                  ticks boxes.
+                  To help ambitious businesses harness the power of AI  from intelligent
+                  automation to custom applications  while delivering the reliable web,
+                  mobile and cloud foundations they run on, with the engineering muscle of
+                  a large technology partner and the speed, care and transparency of a
+                  senior in-house team.
                 </p>
               </div>
               <div className="border-t border-white/[0.08] pt-8">

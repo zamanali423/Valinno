@@ -10,7 +10,7 @@ interface AnimatedCounterProps {
   className?: string;
 }
 
-/** Animated number counter — counts up from 0 when scrolled into view. */
+/** Animated number counter  counts up from 0 when scrolled into view. */
 export default function AnimatedCounter({
   value,
   suffix = "",

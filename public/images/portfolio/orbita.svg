@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="750" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0b1120"/>
+      <stop offset="1" stop-color="#05070e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1200" y2="750" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(900 140) rotate(0) scale(420 420)">
+      <stop stop-color="#3b82f6" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <rect width="1200" height="750" fill="url(#glow)"/>
+  <g opacity="0.16">
+    <rect x="140" y="150" width="920" height="440" rx="18" stroke="#1c2942" stroke-width="2" fill="#0d1526"/>
+    <rect x="140" y="150" width="920" height="46" rx="18" fill="#111b33"/>
+    <rect x="140" y="178" width="920" height="18" fill="#111b33"/>
+    <circle cx="176" cy="173" r="7" fill="#ff5f57"/>
+    <circle cx="200" cy="173" r="7" fill="#febc2e"/>
+    <circle cx="224" cy="173" r="7" fill="#28c840"/>
+    <rect x="430" y="162" width="340" height="22" rx="11" fill="#16223e"/>
+    <rect x="140" y="196" width="920" height="394" fill="#0e1730"/>
+    <rect x="380" y="230" width="300" height="18" rx="9" fill="url(#accent)" opacity="0.85"/>
+    <rect x="380" y="266" width="520" height="10" rx="5" fill="#1b2c52"/>
+    <rect x="380" y="286" width="460" height="10" rx="5" fill="#1b2c52"/>
+    <rect x="380" y="330" width="310" height="130" rx="16" fill="#0f1935" stroke="#1e335f" stroke-width="2"/>
+    <rect x="404" y="352" width="160" height="14" rx="7" fill="#1b2c52"/>
+    <rect x="404" y="384" width="60" height="42" rx="8" fill="url(#accent)"/>
+    <rect x="474" y="384" width="60" height="42" rx="8" fill="url(#accent)" opacity="0.55"/>
+    <rect x="544" y="384" width="60" height="42" rx="8" fill="url(#accent)" opacity="0.3"/>
+    <rect x="404" y="438" width="262" height="10" rx="5" fill="#16223e"/>
+    <rect x="706" y="330" width="310" height="130" rx="16" fill="#0f1935" stroke="#1e335f" stroke-width="2"/>
+    <rect x="730" y="352" width="160" height="14" rx="7" fill="#1b2c52"/>
+    <polyline points="730,430 790,400 850,415 910,380 970,395 1000,370" fill="none" stroke="url(#accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="380" y="480" width="636" height="12" rx="6" fill="#1b2c52"/>
+    <rect x="380" y="504" width="520" height="12" rx="6" fill="#1b2c52"/>
+  </g>
+  <rect x="72" y="636" width="72" height="34" rx="17" fill="url(#accent)"/>
+  <text x="108" y="659" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="700" fill="#05070e" text-anchor="middle">SaaS</text>
+  <text x="72" y="614" font-family="Inter, system-ui, sans-serif" font-size="34" font-weight="700" fill="#ffffff">Orbita</text>
+  <text x="72" y="718" font-family="Inter, system-ui, sans-serif" font-size="17" fill="#9fb0cc">SaaS Analytics Dashboard  placeholder thumbnail</text>
+</svg>

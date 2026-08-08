@@ -12,6 +12,8 @@ interface BaseProps {
   className?: string;
   children: React.ReactNode;
   withArrow?: boolean;
+  /** Make the button stretch to the full width of its container (mobile CTAs). */
+  fullWidth?: boolean;
 }
 
 type ButtonAsLink = BaseProps & { href: string; onClick?: () => void };
@@ -40,8 +42,10 @@ function Arrow() {
 }
 
 export default function Button(props: ButtonProps) {
-  const { variant = "primary", className, children, withArrow } = props;
-  const classes = cn(baseStyles, variants[variant], className);
+  const { variant = "primary", className, children, withArrow, fullWidth } = props;
+  // w-full on mobile only  on sm+ the button returns to its natural width so
+  // stacked hero CTAs don't stretch to 50/50 halves of the row.
+  const classes = cn(baseStyles, variants[variant], fullWidth && "w-full sm:w-auto", className);
 
   const motionProps = {
     whileHover: { scale: 1.03 },
@@ -51,7 +55,7 @@ export default function Button(props: ButtonProps) {
 
   if ("href" in props) {
     return (
-      <motion.span {...motionProps} className="inline-block">
+      <motion.span {...motionProps} className={cn("inline-block", fullWidth && "w-full sm:w-auto")}>
         <Link href={props.href} onClick={props.onClick} className={classes}>
           {children}
           {withArrow && <Arrow />}

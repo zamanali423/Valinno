@@ -2,11 +2,10 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import ProjectCard from "@/components/ui/ProjectCard";
-import { StaggerGroup, StaggerItem } from "@/components/ui/motion";
-import { projects } from "@/lib/data";
+import { getFeaturedProjects } from "@/lib/portfolio-data";
 
 export default function PortfolioPreview() {
-  const featured = projects.slice(0, 4);
+  const featured = getFeaturedProjects();
 
   return (
     <section id="work" className="section scroll-mt-24 bg-surface/30">
@@ -20,7 +19,7 @@ export default function PortfolioPreview() {
                 Products We&apos;re <span className="text-gradient">Proud Of</span>
               </>
             }
-            subtitle="A selection of web, mobile, cloud and design projects. Case studies are placeholders the real ones are coming."
+            subtitle="A selection of AI-powered applications, web platforms, mobile apps, cloud infrastructure and design systems. Full case studies are being finalised."
           />
           <Link
             href="/portfolio"
@@ -31,13 +30,22 @@ export default function PortfolioPreview() {
           </Link>
         </div>
 
-        <StaggerGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {featured.map((project) => (
-            <StaggerItem key={project.title}>
-              <ProjectCard project={project} />
-            </StaggerItem>
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
+          {featured.map((project, index) => (
+            <ProjectCard key={project.slug} project={project} index={index} />
           ))}
-        </StaggerGroup>
+        </div>
+
+        {/* Explore more */}
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/portfolio"
+            className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-all duration-300 hover:border-electric/50 hover:bg-white/[0.08]"
+          >
+            Explore More Work
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+          </Link>
+        </div>
       </div>
     </section>
   );

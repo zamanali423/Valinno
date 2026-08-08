@@ -4,12 +4,12 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import ServiceDetail from "@/components/services/ServiceDetail";
 import ProcessFlow from "@/components/services/ProcessFlow";
 import CTASection from "@/components/ui/CTASection";
-import { services } from "@/lib/data";
+import { services } from "@/lib/services-data";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Web, mobile, cloud and design, plus AI automation, chatbots and ERP/CRM systems — delivered by Velinno, a UAE-based full-stack agency.",
+    "AI-powered applications, AI automation, AI chatbots, agentic AI and generative AI, plus web, mobile, cloud, ERP/CRM systems and design  delivered by Velinno, a UAE-based AI-first full-stack agency.",
 };
 
 export default function ServicesPage() {
@@ -22,7 +22,7 @@ export default function ServicesPage() {
             Everything You Need to <span className="text-gradient">Ship & Scale</span>
           </>
         }
-        description={`${services.length} disciplines under one roof — from web, mobile and design to AI, automation and business systems — so your product never falls through the cracks between vendors.`}
+        description={`From AI-powered applications and intelligent automation to web, mobile and cloud development  ${services.length} disciplines under one roof, so your product never falls through the cracks between vendors.`}
       />
 
       {/* Process overview */}
